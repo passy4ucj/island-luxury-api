@@ -5,8 +5,10 @@ const { protect, authorize } = require('../middleware/auth')
 
 const router = express.Router()
 
-router.route('/')
+router.route('/login')
     .post(login)
+
+router.route('/logout')
     .get(protect, logout)
 
 
