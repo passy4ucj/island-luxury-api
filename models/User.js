@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
             'estate-agent',
             'admin',
         ],
-        default: 'user'
+        default: 'estate-agent'
     },
     loginFlag: {
         type: Boolean,
