@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    subscribed: {
+        type: Boolean,
+        default: false
+    },
     role: {
         type: mongoose.Schema.ObjectId,
         ref: 'Role',
