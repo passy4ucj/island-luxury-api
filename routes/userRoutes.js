@@ -12,9 +12,6 @@ router.route('/')
     .get(getUsers)
      
 
-router.route('/register')
-    .post(register)
-
 
 router.route('/:id')
     .put(adminUpdateUser)

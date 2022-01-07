@@ -10,8 +10,7 @@ const register = asyncHandler(async (req, res) => {
         email,
         username,
         phoneNumber,
-        password,
-        role,
+        password
     } = req.body
 
     if(!firstname || !lastname || !email || !username || !phoneNumber || !password) {
@@ -40,12 +39,14 @@ const register = asyncHandler(async (req, res) => {
         username: lowerUsername,
         phoneNumber,
         password,
-        role,
     })
 
     res.json({
         success: true,
-        message: 'User has been created'
+        message: 'User has been created',
+        firstname: newUser.firstname,
+        role: newUser?.role,
+        token: generateToken(newUser._id)
     })
 })
 
@@ -64,7 +65,7 @@ const login = asyncHandler(async (req, res) => {
     }
 
     //Check for user
-    const user = await User.findOne({ username: lowerUserId }).populate('role', 'roleName').select('+password')
+    const user = await User.findOne({ username: lowerUserId }).select('+password')
 
     if(!user) {
         res.status(401)
@@ -119,7 +120,7 @@ const login = asyncHandler(async (req, res) => {
     res.json({
         success: true,
         firstname: user.firstname,
-        role: user?.role?.roleName,
+        role: user?.role,
         token: generateToken(user._id)
     })
 
@@ -127,7 +128,7 @@ const login = asyncHandler(async (req, res) => {
 })
 
 const myProfile = asyncHandler(async(req, res) => {
-    const user = await User.findById(req.user.id).populate('role', 'roleName')
+    const user = await User.findById(req.user.id)
     
     if(user) {
         res.json({
@@ -146,7 +147,7 @@ const userUpdateProfile = asyncHandler(async (req, res) => {
 
     if(user) {
         user.firstname = req.body.firstname || user.firstname
-        // user.middlename = req.body.middlename || user.middlename
+        user.phoneNumber = req.body.phoneNumber || user.phoneNumber
         user.lastname = req.body.lastname || user.lastname
 
         const updatedUser = await user.save()
@@ -232,7 +233,7 @@ const logout = asyncHandler(async (req, res, next) => {
 })
 
 const getUsers = asyncHandler(async (req, res) => {
-    const users = await User.find({}).sort({ createdAt: -1 }).populate('role', 'roleName')
+    const users = await User.find({}).sort({ createdAt: -1 })
 
     if(users) {
         res.json({
@@ -249,7 +250,7 @@ const getUsers = asyncHandler(async (req, res) => {
 
 
 const getUserById = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.params.id).populate('role', 'roleName')
+    const user = await User.findById(req.params.id)
 
     if(user) {
         res.json({

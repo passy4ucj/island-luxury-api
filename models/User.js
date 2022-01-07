@@ -43,9 +43,13 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     role: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Role',
-        required: true
+        type: String,
+        enum: [
+            'user',
+            'estate-agent',
+            'admin',
+        ],
+        default: 'user'
     },
     loginFlag: {
         type: Boolean,
