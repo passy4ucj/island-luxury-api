@@ -1,4 +1,6 @@
 const express = require('express')
+const path = require('path')
+const multer = require('multer')
 const dotenv = require('dotenv')
 const colors = require('colors')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
@@ -20,6 +22,10 @@ connectDB()
 // Import Route files
 const users = require('./routes/userRoutes')
 const auth = require('./routes/authRoutes')
+const property = require('./routes/propertyRoutes')
+const image = require('./routes/imageUploadRoutes')
+const request = require('./routes/requestRoutes')
+
 
 // Using JSON parser
 app.use(express.json())
@@ -28,6 +34,9 @@ app.use(express.json())
 // Mount routers
 app.use('/api/v1/users', users)
 app.use('/api/v1/auth', auth)
+app.use('/api/v1/properties', property)
+app.use('/api/v1/requests', request)
+app.use('/api/v1/imageupload', image)
 
 
 app.get('/', (req, res) => {
@@ -35,6 +44,8 @@ app.get('/', (req, res) => {
         message: 'REAL ESTATE'
     })
 })
+
+app.use(express.static('images'));
 
 
 // Use error Middleware

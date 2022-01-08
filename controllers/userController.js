@@ -149,6 +149,8 @@ const userUpdateProfile = asyncHandler(async (req, res) => {
         user.firstname = req.body.firstname || user.firstname
         user.phoneNumber = req.body.phoneNumber || user.phoneNumber
         user.lastname = req.body.lastname || user.lastname
+    
+
 
         const updatedUser = await user.save()
 
@@ -274,6 +276,9 @@ const adminUpdateUser = asyncHandler(async (req, res) => {
         user.phoneNumber = req.body.phoneNumber || user.phoneNumber
         user.role = req.body.role || user.role
         user.isActive = req.body.isActive
+        user.subscribed = req.body.subscribed
+        user.subscriptionPlan = req.body.subscriptionPlan || user.subscriptionPlan
+
         const updatedUser = await user.save()
 
         res.json({

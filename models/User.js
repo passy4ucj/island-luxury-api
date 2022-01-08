@@ -42,6 +42,13 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    subscriptionPlan: {
+        type: String,
+        enum: [
+            'premium',
+        ],
+        default: 'premium'
+    },
     role: {
         type: String,
         enum: [
