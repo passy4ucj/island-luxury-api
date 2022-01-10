@@ -3,6 +3,7 @@ const path = require('path')
 const multer = require('multer')
 const dotenv = require('dotenv')
 const colors = require('colors')
+const cors = require('cors')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 
 
@@ -29,6 +30,9 @@ const request = require('./routes/requestRoutes')
 
 // Using JSON parser
 app.use(express.json())
+
+// Enable cors
+app.use(cors())
 
 
 // Mount routers
