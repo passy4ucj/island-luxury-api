@@ -1,5 +1,5 @@
 const express = require('express')
-const { createProperty, getProperties, getApprovedProperties, getPropertyById, adminUpdateProperty } = require('../controllers/propertyController')
+const { createProperty, getProperties, getApprovedProperties, getPropertyById, adminUpdateProperty, getAgentProperties } = require('../controllers/propertyController')
 const { protect, authorize } = require('../middleware/auth')
 
 
@@ -11,6 +11,9 @@ router.route('/')
 
 router.route('/approved')
     .get(getApprovedProperties)
+
+router.route('/agent/:id')
+    .get(protect, getAgentProperties)
  
 router.route('/approved/:id')
     .put(protect, authorize('admin'), adminUpdateProperty)

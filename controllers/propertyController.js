@@ -92,6 +92,26 @@ const getApprovedProperties = asyncHandler(async (req, res) => {
     
 })
 
+
+const getAgentProperties = asyncHandler(async (req, res) => {
+    const properties = await Property.find({ createdBy: req.params.id }).populate('createdBy', 'firstname lastname')
+
+    if(properties) {
+       
+        res.json({
+            success: true,
+            data: properties
+        })
+    } else {
+        res.json({
+            success: true,
+            data: 'No Properties'
+        })
+    }
+
+    
+})
+
 const getPropertyById = asyncHandler(async (req, res) => {
     const property = await Property.findById(req.params.id).populate('createdBy', 'firstname lastname')
 
@@ -134,4 +154,5 @@ module.exports = {
     getApprovedProperties,
     getPropertyById,
     adminUpdateProperty,
+    getAgentProperties,
 }

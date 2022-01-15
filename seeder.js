@@ -8,6 +8,8 @@ dotenv.config({ path: './config/config.env' })
 
 //Load Models
 const User = require('./models/User')
+const Request = require('./models/Request')
+const Property = require('./models/Property')
 
 
 //Connect to DB
@@ -32,6 +34,8 @@ const importData = async () => {
 const destroyData = async () => {
     try {
         await User.deleteMany()
+        await Request.deleteMany()
+        await Property.deleteMany()
 
         console.log('Data Destroyed!'.red.inverse)
     } catch (error) {
