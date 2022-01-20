@@ -45,9 +45,16 @@ const userSchema = new mongoose.Schema({
     subscriptionPlan: {
         type: String,
         enum: [
-            'premium',
+            'Premium',
+            'Basic',
+            'Silver',
+            'Gold'
         ],
-        default: 'premium'
+        default: 'Basic'
+    },
+    propertiesList: {
+        type: Number,
+        default: 0
     },
     role: {
         type: String,

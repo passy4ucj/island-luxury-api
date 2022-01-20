@@ -278,6 +278,7 @@ const adminUpdateUser = asyncHandler(async (req, res) => {
         user.isActive = req.body.isActive
         user.subscribed = req.body.subscribed
         user.subscriptionPlan = req.body.subscriptionPlan || user.subscriptionPlan
+        user.propertiesList = req.body.propertiesList || user.propertiesList
 
         const updatedUser = await user.save()
 

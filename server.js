@@ -26,6 +26,7 @@ const auth = require('./routes/authRoutes')
 const property = require('./routes/propertyRoutes')
 const image = require('./routes/imageUploadRoutes')
 const request = require('./routes/requestRoutes')
+const subscription = require('./routes/subscriptionRoutes')
 
 
 // Using JSON parser
@@ -40,6 +41,7 @@ app.use('/api/v1/users', users)
 app.use('/api/v1/auth', auth)
 app.use('/api/v1/properties', property)
 app.use('/api/v1/requests', request)
+app.use('/api/v1/subscriptions', subscription)
 app.use('/api/v1/imageupload', image)
 
 

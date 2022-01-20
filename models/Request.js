@@ -19,6 +19,15 @@ const requestSchema = new mongoose.Schema({
         required: true,
         ref: 'Property'
     },
+    budget: {
+        type: Number
+    },
+    beds: {
+        type: Number
+    },
+    comments: {
+        type: String
+    },
     createdAt: {
         type: Date,
         default: Date.now

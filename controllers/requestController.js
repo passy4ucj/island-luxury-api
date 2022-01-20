@@ -7,6 +7,9 @@ const propertyRequest = asyncHandler(async (req, res) => {
         fullname,
         phoneNumber,
         property,
+        budget,
+        beds,
+        comments,
     } = req.body
 
 
@@ -16,6 +19,9 @@ const propertyRequest = asyncHandler(async (req, res) => {
             fullname,
             phoneNumber,
             property,
+            budget,
+            beds,
+            comments,
         })
 
         res.json({
