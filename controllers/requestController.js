@@ -42,7 +42,7 @@ const propertyRequest = asyncHandler(async (req, res) => {
 
 const getRequests = asyncHandler(async (req, res) => {
     try {
-        const requests = await Request.find({}).populate('property')
+        const requests = await Request.find({})
 
         res.json({
             success: true,
@@ -56,7 +56,7 @@ const getRequests = asyncHandler(async (req, res) => {
 
 
 const getRequestById = asyncHandler(async (req, res) => {
-    const request = await Request.findById(req.params.id).populate('property')
+    const request = await Request.findById(req.params.id)
 
     if(request) {
         res.json({
