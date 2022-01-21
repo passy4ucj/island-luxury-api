@@ -12,7 +12,7 @@ router.route('/')
 router.route('/approved')
     .get(getApprovedProperties)
 
-router.route('/agent/:id')
+router.route('/agent')
     .get(protect, getAgentProperties)
  
 router.route('/approved/:id')

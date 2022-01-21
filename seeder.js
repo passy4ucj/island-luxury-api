@@ -10,6 +10,7 @@ dotenv.config({ path: './config/config.env' })
 const User = require('./models/User')
 const Request = require('./models/Request')
 const Property = require('./models/Property')
+const Subscription = require('./models/Subscription')
 
 
 //Connect to DB
@@ -36,6 +37,7 @@ const destroyData = async () => {
         await User.deleteMany()
         await Request.deleteMany()
         await Property.deleteMany()
+        await Subscription.deleteMany()
 
         console.log('Data Destroyed!'.red.inverse)
     } catch (error) {

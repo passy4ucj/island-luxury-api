@@ -94,7 +94,7 @@ const getApprovedProperties = asyncHandler(async (req, res) => {
 
 
 const getAgentProperties = asyncHandler(async (req, res) => {
-    const properties = await Property.find({ createdBy: req.params.id }).populate('createdBy', 'firstname lastname')
+    const properties = await Property.find({ createdBy: req.user.id }).populate('createdBy', 'firstname lastname')
 
     if(properties) {
        

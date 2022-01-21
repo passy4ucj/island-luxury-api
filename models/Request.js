@@ -14,10 +14,21 @@ const requestSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    property: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Property'
+    category: {
+        type: String,
+        required: true
+    },
+    propertyType: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    lga: {
+        type: String,
+        required: true
     },
     budget: {
         type: Number

@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
     subscriptionPlan: {
         type: String,
         enum: [
-            'Premium',
+            'Bronze',
             'Basic',
             'Silver',
             'Gold'
