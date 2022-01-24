@@ -55,7 +55,7 @@ const createProperty = asyncHandler(async (req, res) => {
 
 const getProperties = asyncHandler(async (req, res) => {
     try {
-        const properties = await Property.find({}).populate('createdBy', 'firstname lastname')
+        const properties = await Property.find({}).populate('createdBy')
 
         res.json({
             success: true,
@@ -68,7 +68,7 @@ const getProperties = asyncHandler(async (req, res) => {
 })
 
 const getApprovedProperties = asyncHandler(async (req, res) => {
-    const properties = await Property.find({}).populate('createdBy', 'firstname lastname')
+    const properties = await Property.find({}).populate('createdBy')
 
 
     function checkProperties(property) {
@@ -94,7 +94,7 @@ const getApprovedProperties = asyncHandler(async (req, res) => {
 
 
 const getAgentProperties = asyncHandler(async (req, res) => {
-    const properties = await Property.find({ createdBy: req.user.id }).populate('createdBy', 'firstname lastname')
+    const properties = await Property.find({ createdBy: req.user.id }).populate('createdBy')
 
     if(properties) {
        
@@ -113,7 +113,7 @@ const getAgentProperties = asyncHandler(async (req, res) => {
 })
 
 const getPropertyById = asyncHandler(async (req, res) => {
-    const property = await Property.findById(req.params.id).populate('createdBy', 'firstname lastname')
+    const property = await Property.findById(req.params.id).populate('createdBy')
 
     if(property) {
         res.json({
