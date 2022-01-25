@@ -20,7 +20,7 @@ router.route('/approved/:id')
 
 router.route('/:id')
     .get(getPropertyById)
-    .delete(protect, authorize('admin'), deletePropertyById)
+    .delete(protect, authorize('estate-agent', 'admin'), deletePropertyById)
 
 
 
