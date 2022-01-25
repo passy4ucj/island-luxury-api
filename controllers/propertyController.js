@@ -126,6 +126,22 @@ const getPropertyById = asyncHandler(async (req, res) => {
     }
 })
 
+
+const deletePropertyById = asyncHandler(async (req, res) => {
+    const property = await Property.findById(req.params.id)
+
+    if(property) {
+        property.remove()
+        res.json({
+            success: true,
+            message: 'Deleted'
+        })
+    } else {
+        res.status(404)
+        throw new Error('Property Not Found')
+    }
+})
+
 const adminUpdateProperty = asyncHandler(async (req, res) => {
     const property = await Property.findById(req.params.id)
 
@@ -155,4 +171,5 @@ module.exports = {
     getPropertyById,
     adminUpdateProperty,
     getAgentProperties,
+    deletePropertyById,
 }
