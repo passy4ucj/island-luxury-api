@@ -265,6 +265,22 @@ const getUserById = asyncHandler(async (req, res) => {
     }
 })
 
+const deleteUserByID = asyncHandler(async (req, res) => {
+    const user = await User.findByID(req.params.id)
+
+
+    if(user) {
+        user.remove()
+        res.json({
+            success: true,
+            message: "User Deleted"
+        })
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+})
+
 const adminUpdateUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id)
 
@@ -323,5 +339,6 @@ module.exports = {
     logout,
     getUsers,
     getUserById,
+    deleteUserByID,
     adminUpdateUser,
 }

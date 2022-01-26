@@ -1,5 +1,5 @@
 const express = require('express')
-const { register, getUsers, adminUpdateUser, adminResetPassword } = require('../controllers/userController')
+const { register, getUsers, adminUpdateUser, adminResetPassword, deleteUserByID } = require('../controllers/userController')
 const { protect, authorize } = require('../middleware/auth')
 
 
@@ -15,6 +15,7 @@ router.route('/')
 
 router.route('/:id')
     .put(adminUpdateUser)
+    .delete(deleteUserByID)
 
 router.route('/resetpassword/:id')
     .put(adminResetPassword)
