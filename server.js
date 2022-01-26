@@ -1,4 +1,7 @@
 const express = require('express')
+const fs = require('fs')
+const http = require('http')
+const https = require('https')
 const path = require('path')
 const multer = require('multer')
 const dotenv = require('dotenv')
@@ -53,10 +56,22 @@ app.get('/', (req, res) => {
 
 app.use(express.static('images'));
 
+const options = {
+    cert: fs.readFileSync(path.resolve(__dirname, 'island-ssl', 'island.crt'), 'utf8'),
+    key: fs.readFileSync(path.resolve(__dirname, 'island-ssl', 'island.key'), 'utf8'),
+    passphrase: process.env.PASS_PHRASE
+};
+
 
 // Use error Middleware
 app.use(notFound)
 app.use(errorHandler)
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on PORT ${process.env.PORT}`))
+const PORT = process.env.PORT || 7000
+if(process.env.NODE_ENV === 'production') {
+    http.createServer(app).listen(80)
+    https.createServer(options, app).listen(443)
+} else {
+    http.createServer(app).listen(PORT)
+}
+// app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on PORT ${process.env.PORT}`))
