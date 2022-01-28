@@ -69,7 +69,7 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 7000
 if(process.env.NODE_ENV === 'production') {
-    http.createServer(app).listen(80)
+    http.createServer(app).listen(PORT)
     https.createServer(options, app).listen(443)
 } else {
     http.createServer(app).listen(PORT)
