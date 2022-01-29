@@ -63,7 +63,6 @@ const propertySchema = new mongoose.Schema({
     },
     square: {
         type: Number,
-        required: true,
         default: 0
     },
     price: {
