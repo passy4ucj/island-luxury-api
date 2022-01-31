@@ -65,6 +65,9 @@ const userSchema = new mongoose.Schema({
         ],
         default: 'estate-agent'
     },
+    profilePic: {
+        type: String
+    },
     loginFlag: {
         type: Boolean,
         default: false

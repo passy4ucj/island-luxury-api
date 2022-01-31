@@ -56,10 +56,16 @@ app.get('/', (req, res) => {
 
 app.use(express.static('images'));
 
+// const options = {
+//     cert: fs.readFileSync(path.resolve(__dirname, 'island-ssl', 'island.crt'), 'utf8'),
+//     key: fs.readFileSync(path.resolve(__dirname, 'island-ssl', 'island.key'), 'utf8'),
+//     passphrase: process.env.PASS_PHRASE
+// };
+
 const options = {
-    cert: fs.readFileSync(path.resolve(__dirname, 'island-ssl', 'island.crt'), 'utf8'),
-    key: fs.readFileSync(path.resolve(__dirname, 'island-ssl', 'island.key'), 'utf8'),
-    passphrase: process.env.PASS_PHRASE
+    cert: fs.readFileSync(path.resolve(__dirname, 'outcess-ssl', 'outcess.pem'), 'utf8'),
+    key: fs.readFileSync(path.resolve(__dirname, 'outcess-ssl', 'outcess.key'), 'utf8'),
+    passphrase: process.env.PASS_PHRASE_OUTCESS
 };
 
 
