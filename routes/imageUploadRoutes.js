@@ -38,6 +38,23 @@ const upload = multer({
     }
 })
 
+router.post('/multiple', upload.array('image', 8), asyncHandler(async (req, res) => {
+    
+    
+
+    let imageArray = []
+    for (let i = 0; i < req.files.length; i++) {
+        imageArray.push(req.files[i].filename)
+        
+    }
+    res.json({
+        success: true,
+        IMAGES: imageArray
+    })
+    
+ 
+}))
+
 router.post('/:id', upload.single('image'), asyncHandler(async (req, res) => {
     
     
@@ -57,6 +74,38 @@ router.post('/:id', upload.single('image'), asyncHandler(async (req, res) => {
         res.json({
             success: true,
             IMAGE: req.file.filename
+        })
+    } else {
+        res.status(404)
+        throw new Error('Property Not Found. Kindly Login as a user')
+    }
+    
+ 
+}))
+
+
+
+router.post('/multiple/:id', upload.array('image', 8), asyncHandler(async (req, res) => {
+    
+    
+
+    // res.json({
+    //     IMAGE: req.file.filename
+    // })
+    const property = await Property.findById(req.params.id)
+    let imageArray = []
+    if(property) {
+        // user.lastLoginDate = Date.now()
+        for (let i = 0; i < req.files.length; i++) {
+            imageArray.push(req.files[i].filename)
+            await property.images.push(req.files[i].filename)
+            await property.save()
+        }
+        
+        
+        res.json({
+            success: true,
+            IMAGES: imageArray
         })
     } else {
         res.status(404)
