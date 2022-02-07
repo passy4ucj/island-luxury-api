@@ -33,32 +33,26 @@ const propertySchema = new mongoose.Schema({
     },
     bath: {
         type: Number,
-        required: true,
         default: 0
     },
     toilet: {
         type: Number,
-        required: true,
         default: 0
     },
     parkingSpace: {
         type: Boolean,
-        required: true,
         default: false
     },
     furnished: {
         type: Boolean,
-        required: true,
         default: false
     },
     serviced: {
         type: Boolean,
-        required: true,
         default: false
     },
     shared: {
         type: Boolean,
-        required: true,
         default: false
     },
     square: {
