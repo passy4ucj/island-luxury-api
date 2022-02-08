@@ -17,6 +17,7 @@ const createProperty = asyncHandler(async (req, res) => {
         square,
         furnished,
         serviced,
+        images,
         shared,
         description,
     } = req.body
@@ -36,6 +37,7 @@ const createProperty = asyncHandler(async (req, res) => {
             toilet,
             parkingSpace,
             square,
+            images,
             furnished,
             serviced,
             shared,
